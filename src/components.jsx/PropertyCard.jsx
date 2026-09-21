@@ -1,4 +1,4 @@
-export function PropertyCard({image, title, location, price}){
+export function PropertyCard({image, title, type, location, price}){
     return(
         <article className="property-card">
               <img
@@ -8,6 +8,7 @@ export function PropertyCard({image, title, location, price}){
               <div className="property-card-content">
                 <h4>{title}</h4>
                 <p>{location}</p>
+                <p><small>{type}</small></p>
                 <strong>${price} / noche</strong>
               </div>
             </article>

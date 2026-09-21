@@ -2,6 +2,7 @@ import {Header} from './components.jsx/Header'
 import {Hero} from './components.jsx/Hero'
 import {SearchBar} from './components.jsx/SearchBar'
 import {PropertyList} from './components.jsx/PropertyList'
+import { properties } from './data/properties'
 
 function App() {
   return (
@@ -10,12 +11,8 @@ function App() {
 
       <main className="main-content">
         <Hero />
-        <SearchBar />
-
-        
-        <PropertyList />
-
-        
+        <SearchBar />        
+        <PropertyList properties={properties} />        
       </main>
     </div>
   );

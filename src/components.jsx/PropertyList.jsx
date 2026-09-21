@@ -1,6 +1,16 @@
+
 import { PropertyCard } from './PropertyCard'
 
-export function PropertyList(){
+export function PropertyList({properties}){
+
+    if(properties.length == 0){
+        return(
+            <section className='properties-section'>
+                <h3>Alojamientos disponibles</h3>
+                <p>No encontramos alojamientos con esos criterios.</p>
+            </section>
+        )
+    }
 
     return(
         <section className="properties-section">
@@ -10,24 +20,17 @@ export function PropertyList(){
           </div>
 
           <div className="properties-grid">
-            <PropertyCard
-                title="Apartamento moderno"
-                location="Santiago, Chile"
-                price="75"
-                image="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
-            />
-            <PropertyCard
-                title="Casa frente al lago"
-                location="Bariloche, Argentina"
-                price="120"
-                image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
-            />
-            <PropertyCard
-                title="Loft urbano"
-                location="Ciudad de México, México"
-                price="90"
-                image="https://images.unsplash.com/photo-1494526585095-c41746248156"
-            />
+            {properties.map((property)=>(
+                <PropertyCard
+                        key={property.id}
+                        title={property.title}
+                        location={property.location}
+                        price={property.price}
+                        type={property.type || 'Tipo sin especificar'}
+                        image={property.image}
+                    />
+                ))
+            }
           </div>
         </section>
     )
