@@ -1,14 +1,15 @@
-import { Header } from "./components.jsx/Header";
-import { Hero } from "./components.jsx/Hero";
-import { SearchBar } from "./components.jsx/SearchBar";
-import { PropertyList } from "./components.jsx/PropertyList";
+import { filterProperties } from "./utils/filterProperties";
+import { Header } from "./components/layout/Header";
+import { Hero } from "./components/ui/Hero";
+import { SearchBar } from "./components/ui/SearchBar";
+import { PropertyList } from "./components/properties/PropertyList";
 import { properties } from "./data/properties";
 import { useState, useEffect } from "react";
 
 function App() {
   const [city, setCity] = useState("");
   const [search, setSearch] = useState("");
-  const [propertiesFromApi, setPropertiesFromApi] = useState([]);
+  const [propertyList, setPropertyList] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,9 +17,7 @@ function App() {
   useEffect(() => {
     const timerId = setTimeout(() => {
       try {
-        setPropertiesFromApi(properties);
-        
-        
+        setPropertyList(properties);
       } catch {
         setError("No se cargaron las propiedades. Intentalo de nuevo.");
       } finally {
@@ -29,15 +28,7 @@ function App() {
     return () => clearTimeout(timerId);
   }, []);
 
-  const filteredProperties = propertiesFromApi.filter((property) => {
-    const searchText = search.toLowerCase();
-
-    return (
-      property.title.toLowerCase().includes(searchText) ||
-      property.location.toLowerCase().includes(searchText) ||
-      property.type.toLowerCase().includes(searchText)
-    );
-  });
+  const filteredProperties = filterProperties(propertyList, search);
 
   return (
     <div className="app">
