@@ -1,4 +1,6 @@
-export function filterProperties(properties, searchText) {
+import type { Property } from "./../types/propertyTypes"
+
+export function filterProperties(properties:Property[], searchText:string) {
   const normalizedSearch = searchText.trim().toLowerCase();
 
   if (!normalizedSearch) {
