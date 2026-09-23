@@ -1,7 +1,10 @@
-export function SearchBar({value, searchedValue, onChange, onSearch, onClear}) {
+import {searchBar} from "./../../types/searchBarTypes"
+import type { ChangeEvent, SubmitEvent  } from "react";
 
-  function handleSubmit(e) {
-    e.preventDefault();
+export function SearchBar({value, searchedValue, onChange, onSearch, onClear}:searchBar) {
+
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
     onSearch(value.trim())
   }
 
@@ -15,7 +18,7 @@ export function SearchBar({value, searchedValue, onChange, onSearch, onClear}) {
               type="text"
               placeholder="Santiago, Chile"
               value={value}
-              onChange={(event) => {
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onChange(event.target.value);
               }}
             />
