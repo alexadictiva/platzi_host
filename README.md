@@ -1,108 +1,87 @@
-# Curso de React.js Básico — Clon estilo Platzi-host
+# Platzi-host
 
-Curso práctico de React.js donde construimos paso a paso la **home** de un clon sencillo inspirado en Platzi-host. La mayor parte del curso se desarrolla con **JavaScript** para enfocarnos en los fundamentos de React. Cerca del final, actualizamos el proyecto a **TypeScript**.
+Aplicación web para explorar alojamientos y buscar por ubicación, tipo de propiedad y cantidad de huéspedes. Cada alojamiento muestra una imagen, su ubicación, el precio por noche y el máximo de huéspedes.
 
-## Proyecto: Platzi-host
+## Cómo funciona
 
-Una aplicación web con:
-- Header principal
-- Sección hero
-- Barra de búsqueda
-- Listado de propiedades con cards reutilizables
-- Filtros simples por ciudad, tipo o texto
-- Estados de carga, error y resultados vacíos
+1. Al abrir la app, aparece un mensaje de carga mientras se prepara el listado de alojamientos.
+2. Completá uno o varios campos del buscador: **Ciudad**, **Tipo** y **Huéspedes**.
+3. Presioná **Buscar** o Enter para aplicar los filtros. Escribir en los campos no modifica los resultados hasta confirmar la búsqueda.
+4. Revisá los alojamientos que cumplen todos los criterios. Si no hay coincidencias, la app muestra un mensaje.
+5. Cualquiera de los botones **x** del buscador limpia todos los campos y restablece el listado completo.
+
+### Criterios de búsqueda
+
+| Campo | Comportamiento |
+| --- | --- |
+| Ciudad | Busca coincidencias parciales en la ubicación, que incluye ciudad y país. No distingue mayúsculas de minúsculas. |
+| Tipo | Busca coincidencias parciales en el tipo de alojamiento, como Casa, Loft o Villa. No distingue mayúsculas de minúsculas. |
+| Huéspedes | Busca alojamientos cuyo máximo de huéspedes sea exactamente igual al número ingresado. |
+
+Los campos vacíos no restringen los resultados. Los filtros completados se aplican juntos.
+
+Por ejemplo, buscar **Colombia** con **4** huéspedes muestra la cabaña de Medellín del catálogo actual. Dejar todos los campos vacíos y presionar Buscar muestra todos los alojamientos.
+
+## Catálogo y alcance
+
+El catálogo se almacena en `src/data/properties.ts`. Cada propiedad contiene:
+
+- Identificador y título.
+- Ubicación y tipo de alojamiento.
+- Precio por noche y URL de la imagen.
+- Máximo de huéspedes, guardado en el campo `huesped`.
+
+La app funciona con datos locales y simula una carga inicial de tres segundos. Las imágenes se obtienen de Unsplash y requieren conexión a Internet. Incluye mensajes de carga, error y búsqueda sin resultados.
+
+La versión actual permite consultar y filtrar alojamientos. No incluye reservas, pagos, cuentas de usuario ni conexión a un backend. Los enlaces del encabezado son elementos visuales y todavía no llevan a secciones independientes.
+
+## Ejecutar en local
+
+Necesitás Node.js y npm instalados y compatibles con la versión de Vite del proyecto.
+
+Desde la carpeta del proyecto, instalá las dependencias:
+
+```bash
+npm install
+```
+
+Iniciá el servidor de desarrollo:
+
+```bash
+npm run dev
+```
+
+Abrí en el navegador la dirección que indique la terminal.
+
+## Comandos disponibles
+
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Inicia el servidor de desarrollo. |
+| `npm run build` | Genera la versión de producción en `dist/`. |
+| `npm run preview` | Permite revisar localmente la versión generada con build. |
+| `npm run lint` | Ejecuta ESLint con la configuración del proyecto. |
 
 ## Tecnologías
 
-- React 19
-- Vite
-- JavaScript (clases 1–15)
-- TypeScript (clases 16–18)
+- React 19 para la interfaz y el manejo del estado.
+- TypeScript para los componentes, datos y tipos.
+- Vite para el desarrollo y la compilación.
+- CSS para los estilos.
+- ESLint para el análisis del código.
 
-## Estructura del curso por ramas
+## Organización del proyecto
 
-Cada clase tiene su propia rama para que puedas seguir el progreso paso a paso:
-
-| Rama | Clase | Tema |
-|------|-------|------|
-| `clase-01/intro` | 1 | Introducción al curso y al proyecto |
-| `clase-02/setup-proyecto` | 2 | Configuración del proyecto con Vite |
-| `clase-03/estructura-visual` | 3 | Estructura visual de la aplicación |
-| `clase-04/primeros-componentes` | 4 | Primeros componentes en React |
-| `clase-05/props` | 5 | Props en React |
-| `clase-06/datos-mock` | 6 | Datos mock del proyecto |
-| `clase-07/renderizado-listas` | 7 | Renderizado de listas con `.map()` |
-| `clase-08/renderizado-condicional` | 8 | Renderizado condicional |
-| `clase-09/usestate` | 9 | Estado local con `useState` |
-| `clase-10/eventos` | 10 | Manejo de eventos |
-| `clase-11/filtro-basico` | 11 | Filtro básico de propiedades |
-| `clase-12/componentes-controlados` | 12 | Componentes controlados |
-| `clase-13/useeffect` | 13 | Introducción a `useEffect` |
-| `clase-14/loading-error` | 14 | Estados de carga y error |
-| `clase-15/organizacion-refactor` | 15 | Organización de componentes y refactor |
-| `clase-16/typescript-migracion` | 16 | Actualización del proyecto a TypeScript |
-| `clase-17/typescript-tipado` | 17 | Tipando componentes, eventos, estados y funciones |
-| `clase-18/cierre` | 18 | Cierre y entrega del proyecto |
-
-## Cómo usar este repositorio
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/erasmoh/curso-react-basico.git
-   cd curso-react-basico
-   ```
-
-2. Cambia a la rama de la clase que quieras revisar:
-   ```bash
-   git checkout clase-02/setup-proyecto
-   ```
-
-3. Instala dependencias (a partir de la clase 2):
-   ```bash
-   npm install
-   ```
-
-4. Levanta el servidor de desarrollo:
-   ```bash
-   npm run dev
-   ```
-
-## Ruta del curso
-
-### Primera parte: React con JavaScript
-- Crear proyecto
-- Componentes
-- Props
-- Listas
-- Estado local
-- Eventos
-- useEffect
-- Organización del proyecto
-
-### Parte final: Actualización a TypeScript
-- Cambiar extensiones
-- Tipar datos
-- Tipar props
-- Tipar eventos
-- Tipar estados
-
-## Datos mock
-
-El proyecto no tiene backend. Usamos datos mock para simular propiedades:
-
-```javascript
-const properties = [
-  {
-    id: 1,
-    title: "Apartamento moderno en Santiago",
-    location: "Santiago, Chile",
-    price: 75,
-    image: "/images/apartment.jpg",
-    type: "Apartamento"
-  }
-];
+```text
+src/
+├── components/
+│   ├── layout/        # Encabezado de la aplicación
+│   ├── properties/    # Listado y tarjetas de alojamientos
+│   └── ui/            # Presentación y formulario de búsqueda
+├── data/              # Catálogo local de propiedades
+├── types/             # Tipos de propiedades y props del buscador
+├── utils/             # Función de filtrado
+├── App.tsx            # Estado, carga inicial y conexión de componentes
+├── index.css          # Estilos de la aplicación
+└── main.tsx           # Punto de entrada
 ```
-
-## Licencia
-
-Este proyecto es material educativo.
