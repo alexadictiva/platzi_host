@@ -253,7 +253,7 @@ img {
   font-size: 0.9rem;
 }
 
-.property-card-content strong {
+.property-card-content strong, .property-card-content span {
   color: #98ca3f;
 }
 

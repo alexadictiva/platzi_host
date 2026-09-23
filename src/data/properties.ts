@@ -7,7 +7,8 @@ export const properties: Property[] = [
     location: "Santiago, Chile",
     price: 75,
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
-    type: "Apartamento"
+    type: "Apartamento",
+    huesped: 6
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ export const properties: Property[] = [
     location: "Bariloche, Argentina",
     price: 120,
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    type: ""
+    type: "Casa",
+    huesped: 4
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ export const properties: Property[] = [
     location: "Bogotá, Colombia",
     price: 65,
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    type: "Loft"
+    type: "Loft",
+    huesped: 3
   },
   {
     id: 4,
@@ -31,7 +34,8 @@ export const properties: Property[] = [
     location: "Medellín, Colombia",
     price: 90,
     image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233",
-    type: "Cabaña"
+    type: "Cabaña",
+    huesped: 4
   },
   {
     id: 5,
@@ -39,7 +43,8 @@ export const properties: Property[] = [
     location: "Buenos Aires, Argentina",
     price: 55,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
-    type: "Estudio"
+    type: "Estudio",
+    huesped: 2
   },
   {
     id: 6,
@@ -47,14 +52,7 @@ export const properties: Property[] = [
     location: "Cancún, México",
     price: 200,
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
-    type: "Villa"
-  },
-  {
-    id: 7,
-    title: "Villa con piscina 2",
-    location: "Cancún, México",
-    price: 200,
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
-    type: "Villa"
+    type: "Villa",
+    huesped: 5
   }
 ];

@@ -28,6 +28,7 @@ export function PropertyList({ properties }: PropertyListProps) {
             price={property.price}
             image={property.image}
             type={property.type}
+            huesped={property.huesped}
           />
         ))}
       </div>

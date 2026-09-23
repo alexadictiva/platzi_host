@@ -1,14 +1,29 @@
-import {searchBar} from "./../../types/searchBarTypes"
-import type { ChangeEvent, SubmitEvent  } from "react";
+import { searchBar } from "./../../types/searchBarTypes";
+import type { ChangeEvent, SubmitEvent } from "react";
 
-export function SearchBar({value, searchedValue, onChange, onSearch, onClear}:searchBar) {
-
+export function SearchBar({
+  cityValue,
+  typeValue,
+  huespedValue,
+  searchedValue,
+  searchedType,
+  searchedHuesped,
+  onSearch,
+  onSearchType,
+  onSearchHuesped,
+  onCityChange,
+  onTypeChange,
+  onHuespedsChange,
+  onClear,
+}: searchBar) {
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSearch(value.trim())
+    onSearch(cityValue.trim());
+    onSearchType(typeValue.trim());
+    onSearchHuesped(huespedValue);
   }
 
- return (
+  return (
     <>
       <form className="search-section" onSubmit={handleSubmit}>
         <label>
@@ -17,12 +32,12 @@ export function SearchBar({value, searchedValue, onChange, onSearch, onClear}:se
             <input
               type="text"
               placeholder="Santiago, Chile"
-              value={value}
+              value={cityValue}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                onChange(event.target.value);
+                onCityChange(event.target.value);
               }}
             />
-            {(value || searchedValue) && (
+            {(cityValue || searchedValue) && (
               <button
                 className="clear-city-button"
                 type="button"
@@ -35,11 +50,47 @@ export function SearchBar({value, searchedValue, onChange, onSearch, onClear}:se
         </label>
         <label>
           Tipo
-          <input type="text" placeholder="Apartamento" />
+          <span className="city-input-wrapper">
+            <input
+              type="text"
+              placeholder="Apartamento"
+              value={typeValue}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onTypeChange(event.target.value);
+              }}
+            />
+            {(typeValue || searchedType) && (
+              <button
+                className="clear-city-button"
+                type="button"
+                onClick={onClear}
+              >
+                x
+              </button>
+            )}
+          </span>
         </label>
         <label>
           Huéspedes
-          <input type="number" placeholder="2" />
+          <span className="city-input-wrapper">
+            <input
+              type="number"
+              placeholder="2"
+              value={huespedValue}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onHuespedsChange(event.target.value);
+              }}
+              />
+            {(huespedValue || searchedHuesped) && (
+              <button
+                className="clear-city-button"
+                type="button"
+                onClick={onClear}
+              >
+                x
+              </button>
+            )}
+            </span>
         </label>
         <button type="submit">Buscar</button>
       </form>

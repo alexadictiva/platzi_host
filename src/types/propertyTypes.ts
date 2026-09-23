@@ -5,4 +5,5 @@ export type Property = {
     price: number;
     image: string;
     type: string;
+    huesped:number
 }

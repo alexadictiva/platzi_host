@@ -1,5 +1,5 @@
 import { filterProperties } from "./utils/filterProperties";
-import type { Property } from "./types/propertyTypes"
+import type { Property } from "./types/propertyTypes";
 import { Header } from "./components/layout/Header";
 import { Hero } from "./components/ui/Hero";
 import { SearchBar } from "./components/ui/SearchBar";
@@ -10,6 +10,13 @@ import { useState, useEffect } from "react";
 function App() {
   const [city, setCity] = useState("");
   const [search, setSearch] = useState("");
+
+  const [type, setType] = useState("");
+  const [searchType, setSearchType] = useState("");
+
+  const [huesped, setHuesped] = useState("");
+  const [searchHuesped, setSearchHuesped] = useState("");
+
   const [propertyList, setPropertyList] = useState<Property[]>([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +36,12 @@ function App() {
     return () => clearTimeout(timerId);
   }, []);
 
-  const filteredProperties = filterProperties(propertyList, search);
+  const filteredProperties = filterProperties(
+    propertyList,
+    search,
+    searchType,
+    searchHuesped,
+  );
 
   return (
     <div className="app">
@@ -38,13 +50,25 @@ function App() {
       <main className="main-content">
         <Hero />
         <SearchBar
-          value={city}
+          cityValue={city}
+          typeValue={type}
+          huespedValue={huesped}
           searchedValue={search}
-          onChange={setCity}
+          searchedType={searchType}
+          searchedHuesped={searchHuesped}
+          onCityChange={setCity}
+          onTypeChange={setType}
+          onHuespedsChange={setHuesped}
           onSearch={setSearch}
+          onSearchType={setSearchType}
+          onSearchHuesped={setSearchHuesped}
           onClear={() => {
             setCity("");
             setSearch("");
+            setType("");
+            setSearchType("");
+            setHuesped("");
+            setSearchHuesped("");
           }}
         />
         {isLoading && <p>Cargando propiedades...</p>}

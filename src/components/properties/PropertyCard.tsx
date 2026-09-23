@@ -6,6 +6,7 @@ export function PropertyCard({
   type,
   location,
   price,
+  huesped
 }: Property) {
   return (
     <article className="property-card">
@@ -16,7 +17,12 @@ export function PropertyCard({
         <p>
           <small>{type}</small>
         </p>
-        <strong>${price} / noche</strong>
+        <p>
+          <strong>${price} / noche</strong>
+        </p>
+        <p>
+          Máximo de huespedes: <span className="red">{huesped}</span>
+        </p>
       </div>
     </article>
   );
